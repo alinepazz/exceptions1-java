@@ -1,6 +1,7 @@
 package model.entities;
 
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Reservation {
 
@@ -10,30 +11,21 @@ public class Reservation {
 	
 	
 	public Reservation(Integer roomNumber, Date checkIn, Date checkOut) {
-		
 		this.roomNumber = roomNumber;
 		this.checkIn = checkIn;
 		this.checkOut = checkOut;
 	}
 
-
 	public Integer getRoomNumber() {
 		return roomNumber;
 	}
-
 
 	public void setRoomNumber(Integer roomNumber) {
 		this.roomNumber = roomNumber;
 	}
 
-
 	public Date getCheckIn() {
 		return checkIn;
-	}
-
-
-	public void setCheckIn(Date checkIn) {
-		this.checkIn = checkIn;
 	}
 
 
@@ -41,11 +33,9 @@ public class Reservation {
 		return checkOut;
 	}
 
-
-	public void setCheckOut(Date checkOut) {
-		this.checkOut = checkOut;
+	public long duration() {
+		long diff = checkOut.getTime() - checkIn.getTime();
+		return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+		
 	}
-	
-	
-	
 }
